@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Paciente(models.Model):
 
     dni = models.PositiveIntegerField(
@@ -48,7 +47,7 @@ class Turno(models.Model):
     )
 
     paciente = models.ForeignKey(
-        'paciente',
+        'Paciente',
         on_delete = models.SET_NULL,
         #null = True,
         db_column = 'PACIENTE'
@@ -63,7 +62,6 @@ class Turno(models.Model):
 
     class Meta:
         db_table = 'TURNO'  
-
 
 
 class Especialista(models.Model):
@@ -116,4 +114,3 @@ class TipoDeAtencion(models.Model):
 
     class Meta:
         db_table = 'TIPO_DE_ATENCION' 
-
