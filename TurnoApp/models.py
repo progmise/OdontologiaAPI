@@ -102,7 +102,8 @@ class TipoDeAtencion(models.Model):
     )
 
     especialistas = models.ManyToManyField(
-        'Especialista', related_name='tipo_atenciones'
+        'Especialista',
+        related_name='tipo_atenciones'
     )
 
     class Meta:
