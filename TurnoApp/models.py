@@ -37,21 +37,20 @@ class Turno(models.Model):
     especialista = models.ForeignKey(
         'Especialista',
         on_delete = models.SET_NULL,
-        #null = True,
+        null = True,
         db_column = 'ESPECIALISTA'
     )
 
     paciente = models.ForeignKey(
         'Paciente',
-        on_delete = models.SET_NULL,
-        #null = True,
+        on_delete = models.CASCADE,
         db_column = 'PACIENTE'
     )
 
     tipo_de_atencion = models.ForeignKey(
         'TipoDeAtencion',
         on_delete = models.SET_NULL,
-        #null = True,
+        null = True,
         db_column = 'TIPO_DE_ATENCION'
     )
 
