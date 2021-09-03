@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Paciente(models.Model):
 
     dni = models.PositiveIntegerField(
@@ -18,11 +17,6 @@ class Paciente(models.Model):
     apellido = models.CharField(
         max_length = 64,
         db_column = 'APELLIDO'
-    )
-
-    turnos = models.PositiveIntegerField(
-        db_column = 'TURNOS'
-        # TIPO DE DATO: LIST<TURNO>
     )
 
     class Meta:
@@ -43,27 +37,25 @@ class Turno(models.Model):
     especialista = models.ForeignKey(
         'Especialista',
         on_delete = models.SET_NULL,
-        #null = True,
+        null = True,
         db_column = 'ESPECIALISTA'
     )
 
     paciente = models.ForeignKey(
-        'paciente',
-        on_delete = models.SET_NULL,
-        #null = True,
+        'Paciente',
+        on_delete = models.CASCADE,
         db_column = 'PACIENTE'
     )
 
     tipo_de_atencion = models.ForeignKey(
         'TipoDeAtencion',
         on_delete = models.SET_NULL,
-        #null = True,
+        null = True,
         db_column = 'TIPO_DE_ATENCION'
     )
 
     class Meta:
         db_table = 'TURNO'  
-
 
 
 class Especialista(models.Model):
@@ -83,14 +75,9 @@ class Especialista(models.Model):
         db_column = 'APELLIDO'
     )
 
-    turnos = models.PositiveIntegerField(
-        db_column = 'TURNOS'
-        # TIPO DE DATO: LIST<TURNO>
-    )
-
-    tipo_atenciones = models.PositiveIntegerField(
-        db_column = 'TIPO_ATENCIONES'
-        # TIPO DE DATO: LIST<TIPODEATENCION>
+    tipo_atenciones = models.ManyToManyField(
+        'TipoDeAtencion',
+        related_name='especialistas'
     )
 
     class Meta:
@@ -114,6 +101,10 @@ class TipoDeAtencion(models.Model):
         db_column = 'DESCRIPCION'
     )
 
+    especialistas = models.ManyToManyField(
+        'Especialista',
+        related_name='tipo_atenciones'
+    )
+
     class Meta:
         db_table = 'TIPO_DE_ATENCION' 
-
