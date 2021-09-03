@@ -19,11 +19,6 @@ class Paciente(models.Model):
         db_column = 'APELLIDO'
     )
 
-    turnos = models.PositiveIntegerField(
-        db_column = 'TURNOS'
-        # TIPO DE DATO: LIST<TURNO>
-    )
-
     class Meta:
         db_table = 'PACIENTE'  
 
@@ -79,11 +74,6 @@ class Especialista(models.Model):
     apellido = models.CharField(
         max_length = 64,
         db_column = 'APELLIDO'
-    )
-
-    turnos = models.PositiveIntegerField(
-        db_column = 'TURNOS'
-        # TIPO DE DATO: LIST<TURNO>
     )
 
     tipo_atenciones = models.PositiveIntegerField(
