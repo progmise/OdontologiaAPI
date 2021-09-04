@@ -101,10 +101,5 @@ class TipoDeAtencion(models.Model):
         db_column = 'DESCRIPCION'
     )
 
-    especialistas = models.ManyToManyField(
-        'Especialista',
-        related_name='tipo_atenciones'
-    )
-
     class Meta:
         db_table = 'TIPO_DE_ATENCION' 
